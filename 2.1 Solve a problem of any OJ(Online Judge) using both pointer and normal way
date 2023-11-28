@@ -1,4 +1,3 @@
-//user given array of integers, find the sum of all elements
 #include <stdio.h>
 
 int findSum(int arr[], int size) {
@@ -10,8 +9,16 @@ int findSum(int arr[], int size) {
 }
 
 int main() {
-    int arr[] = {1, 2, 3, 4, 5};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    int size;
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
     int result = findSum(arr, size);
     printf("Sum using normal approach: %d\n", result);
     return 0;
