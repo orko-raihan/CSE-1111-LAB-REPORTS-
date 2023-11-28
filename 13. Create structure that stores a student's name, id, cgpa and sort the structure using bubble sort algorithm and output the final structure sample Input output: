@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+
+struct university {
+    char name[30];
+    int id;
+    float cgpa;
+} student[100], temp;
+
+void bubble_sort(int n) {
+    for(int i=0; i<n; i++) {
+        for(int j=i+1; j<n; j++) {
+            if(student[i].id > student[j].id) {
+                temp = student[j];
+                student[j] = student[i];
+                student[i] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    for (int i=0; i<n; i++) {
+        printf("Enter details for student %d:\n", i+1);
+        printf("Name: ");
+        scanf("%s", student[i].name);
+        printf("ID: ");
+        scanf("%d", &student[i].id);
+        printf("CGPA: ");
+        scanf("%f", &student[i].cgpa);
+    }
+
+    bubble_sort(n);
+
+    printf("\nSorted student details using Bubble Sort:\n");
+    for (int i=0; i<n; i++) {
+        printf("%s %d %.2f\n", student[i].name, student[i].id, student[i].cgpa);
+    }
+
+    return 0;
+}
