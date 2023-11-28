@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    char name[50];
+    int id;
+    float fees;
+
+    FILE *inputFile = fopen("input.txt", "r");
+    if (inputFile == NULL) {
+        perror("Error opening input.txt");
+        return 1;
+    }
+
+    printf("Student Information:\n");
+
+    while (fscanf(inputFile, "%s %d %f", name, &id, &fees) == 3) {
+        printf("Name: %s\n", name);
+        printf("ID: %d\n", id);
+        printf("Fees: %.2f\n", fees);
+
+        FILE *outputFile = fopen("output.txt", "a");
+        if (outputFile == NULL) {
+            perror("Error opening output.txt");
+            fclose(inputFile);
+            return 1;
+        }
+
+        fprintf(outputFile, "Student Information:\n");
+        fprintf(outputFile, "Name: %s\n", name);
+        fprintf(outputFile, "ID: %d\n", id);
+        fprintf(outputFile, "Fees: %.2f\n", fees);
+        fclose(outputFile);
+    }
+
+    fclose(inputFile);
+
+    return 0;
+}
