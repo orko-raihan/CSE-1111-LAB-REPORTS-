@@ -1,38 +1,33 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define MAX_STUDENTS 100
+#define MAX_NAME_LENGTH 30
 
 int main() {
-    char name[50];
-    int id;
-    float fees;
+    FILE *input, *output;
+    int student_id[MAX_STUDENTS];
+    float student_fees[MAX_STUDENTS];
+    char student_name[MAX_STUDENTS][MAX_NAME_LENGTH];
 
-    FILE *inputFile = fopen("input.txt", "r");
-    if (inputFile == NULL) {
-        perror("Error opening input.txt");
-        return 1;
+    input = fopen("input.txt", "r");
+    output = fopen("output.txt", "w");
+
+    if (!input || !output) {
+        printf("ERROR: Could Not Open Files\n");
+        exit(1);
     }
 
-    printf("Student Information:\n");
-
-    while (fscanf(inputFile, "%s %d %f", name, &id, &fees) == 3) {
-        printf("Name: %s\n", name);
-        printf("ID: %d\n", id);
-        printf("Fees: %.2f\n", fees);
-
-        FILE *outputFile = fopen("output.txt", "a");
-        if (outputFile == NULL) {
-            perror("Error opening output.txt");
-            fclose(inputFile);
-            return 1;
-        }
-
-        fprintf(outputFile, "Student Information:\n");
-        fprintf(outputFile, "Name: %s\n", name);
-        fprintf(outputFile, "ID: %d\n", id);
-        fprintf(outputFile, "Fees: %.2f\n", fees);
-        fclose(outputFile);
+    int i = 0;
+    while (fscanf(input, "%s%d%f", student_name[i], &student_id[i], &student_fees[i]) != EOF) {
+        printf("Student %d Info:\nName: %s\nID: %d\nFees: %.2f\n", i + 1, student_name[i], student_id[i], student_fees[i]);
+        fprintf(output, "Student %d Info:\nName: %s\nID: %d\nFees: %.2f\n", i + 1, student_name[i], student_id[i], student_fees[i]);
+        i++;
     }
 
-    fclose(inputFile);
+    fclose(input);
+    fclose(output);
 
     return 0;
 }
