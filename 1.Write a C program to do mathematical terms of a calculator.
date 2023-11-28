@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <math.h>
+
+#define ADD(x, y) ((x) + (y))
+#define SUBTRACT(x, y) ((x) - (y))
+#define MULTIPLY(x, y) ((x) * (y))
+#define DIVIDE(x, y) ((y) != 0 ? ((double)(x) / (y)) : 0)
+#define SQUARE_ROOT(x) (sqrt(x))
+#define SQUARE(x) ((x) * (x))
+#define CUBE(x) ((x) * (x) * (x))
+#define CUBIC_ROOT(x) (cbrt(x))
+#define POWER(x, y) (pow(x, y))
+#define PERCENTAGE(x, y) (((double)(x) / (y)) * 100)
+
+int main() {
+    int choice;
+    int a, b, exponent;
+
+    printf("Choose operation:\n");
+    printf("1. Addition\n");
+    printf("2. Subtraction\n");
+    printf("3. Multiplication\n");
+    printf("4. Division\n");
+    printf("5. Square Root\n");
+    printf("6. Square of a Number\n");
+    printf("7. Cube of a Number\n");
+    printf("8. Cubic Root of a Number\n");
+    printf("9. Power of a Number\n");
+    printf("10. Percentage\n");
+
+    printf("Enter your choice (1-10): ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            printf("Enter two numbers: ");
+            scanf("%d %d", &a, &b);
+            break;
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            printf("Enter a number: ");
+            scanf("%d", &a);
+            if (choice == 9) {
+                printf("Enter the exponent: ");
+                scanf("%d", &exponent);
+            }
+            break;
+        case 10:
+            printf("Enter two numbers: ");
+            scanf("%d %d", &a, &b);
+            break;
+        default:
+            printf("Invalid choice\n");
+            return 1; 
+    }
+
+    switch (choice) {
+        case 1:
+            printf("Addition of %d and %d is %d\n", a, b, ADD(a, b));
+            break;
+        case 2:
+            printf("Subtraction of %d from %d is %d\n", b, a, SUBTRACT(a, b));
+            break;
+        case 3:
+            printf("Multiplication of %d and %d is %d\n", a, b, MULTIPLY(a, b));
+            break;
+        case 4:
+            printf("Division of %d by %d is %d\n", a, b, DIVIDE(a, b));
+            break;
+        case 5:
+            printf("Square root of %d is %lf\n", a, SQUARE_ROOT(a));
+            break;
+        case 6:
+            printf("Square of %d is %d\n", a, SQUARE(a));
+            break;
+        case 7:
+            printf("Cube of %d is %d\n", a, CUBE(a));
+            break;
+        case 8:
+            printf("Cubic root of %d is %lf\n", a, CUBIC_ROOT(a));
+            break;
+        case 9:
+            printf("Power of %d to the %d is %lf\n", a, exponent, POWER(a, exponent));
+            break;
+        case 10:
+            printf("Percentage of %d out of %d is %lf%%\n", b, a, PERCENTAGE(b, a));
+            break;
+    }
+
+    return 0;
+}
