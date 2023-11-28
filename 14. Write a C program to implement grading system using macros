@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+#define A 90
+#define B 80
+#define C 70
+#define D 60
+
+char getGrade(int score) {
+    if (score >= A) {
+        return 'A';
+    } else if (score >= B) {
+        return 'B';
+    } else if (score >= C) {
+        return 'C';
+    } else if (score >= D) {
+        return 'D';
+    } else {
+        return 'F';
+    }
+}
+
+int main() {
+    int score;
+
+    printf("Enter the student's score: ");
+    scanf("%d", &score);
+
+    printf("Grade: %c\n", getGrade(score));
+
+    return 0;
+}
