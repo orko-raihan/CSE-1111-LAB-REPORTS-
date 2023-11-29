@@ -1,22 +1,22 @@
 #include <stdio.h>
 
-Int isPalindrome(int num, int orgnum) {
-    If (num == 0) {
-        Return orgnum;
+int isPalindrome(int num, int orgnum) {
+    if (num == 0) {
+        return orgnum;
     } else {
-        Return isPalindrome(num / 10, orgnum * 10 + num % 10);
+        return isPalindrome(num / 10, orgnum * 10 + num % 10);
     }
 }
 
-Int main() {
-    Int num;
-    Printf(“Enter a number: “);
-    Scanf(“%d”, &num);
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
 
-    If (num == isPalindrome(num, 0))
-        Printf(“%d is a palindrome.\n”, num);
-    Else
-        Printf(“%d is not a palindrome.\n”, num);
+    if (num == isPalindrome(num, 0))
+        printf("%d is a palindrome.\n", num);
+    else
+        printf("%d is not a palindrome.\n", num);
 
-    Return 0;
+    return 0;
 }
